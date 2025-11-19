@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>📖 Library Gate</h1>
+  <p>Paste text here to read in a dyslexia-friendly format.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <textarea name="text" rows="10" cols="60" style="font-family: 'OpenDyslexic', Arial, sans-serif; background:#fefae0; color:#333; padding:10px;"></textarea>
+    <br>
+    <button type="submit">Read</button>
+  </form>
+
+  {% if submitted_text %}
+    <h2>Your Text:</h2>
+    <div style="font-family:'OpenDyslexic', Arial, sans-serif; background:#e0f7fa; padding:15px; border-radius:8px;">
+      {{ submitted_text }}
+    </div>
+  {% endif %}
+{% endblock %}

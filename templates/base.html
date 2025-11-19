@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NeurAze</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header style="padding:12px;background:#6c63ff;color:white;display:flex;justify-content:space-between;align-items:center;">
+    <div><a href="{% url 'hub:hub' %}" style="color:white;text-decoration:none;font-weight:700;">NeurAze</a></div>
+    <nav>
+      {% if user.is_authenticated %}
+        <span style="margin-right:12px;">Hi, {{ user.username }}</span>
+        <a href="{% url 'accounts:logout' %}" style="color:white;">Logout</a>
+      {% else %}
+        <a href="{% url 'accounts:login' %}" style="color:white;margin-right:8px;">Login</a>
+        <a href="{% url 'accounts:signup' %}" style="color:white;">Sign up</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main style="padding:24px;">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
