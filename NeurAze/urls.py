@@ -36,8 +36,7 @@ urlpatterns = [
     # dashboard
     path('dashboard/', include('dashboard.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-      path('accounts/', include('accounts.urls')),  # our custom signup/login
-    path('dashboard/', include('dashboard.urls')),  # dashboard app
+    path('accounts/', include('accounts.urls')),  # our custom signup/login
 
 ]
 

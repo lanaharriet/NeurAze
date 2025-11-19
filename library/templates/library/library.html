@@ -1,20 +1,65 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <h1>📖 Library Gate</h1>
-  <p>Paste text here to read in a dyslexia-friendly format.</p>
 
-  <form method="post">
+<!-- Load Lexend font for dyslexia-friendly output -->
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+
+<h1 style="margin-bottom: 20px; font-family:Arial, sans-serif;">📖 Library Gate</h1>
+
+<form method="post">
     {% csrf_token %}
-    <textarea name="text" rows="10" cols="60" style="font-family: 'OpenDyslexic', Arial, sans-serif; background:#fefae0; color:#333; padding:10px;"></textarea>
-    <br>
-    <button type="submit">Read</button>
-  </form>
+    <textarea 
+        name="reading_text" 
+        rows="12" 
+        style="
+            width: 100%; 
+            font-family: Arial, sans-serif; 
+            font-size:18px; 
+            line-height:1.6; 
+            padding:12px; 
+            border:1px solid #ccc; 
+            border-radius:8px;
+            background: #fefefe;
+        "
+        placeholder="Paste your text here..."
+    >{{ reading_text }}</textarea>
+    <br><br>
 
-  {% if submitted_text %}
-    <h2>Your Text:</h2>
-    <div style="font-family:'OpenDyslexic', Arial, sans-serif; background:#e0f7fa; padding:15px; border-radius:8px;">
-      {{ submitted_text }}
-    </div>
-  {% endif %}
+    <button type="submit" name="read_on_screen" style="
+        padding:10px 20px; 
+        border-radius:6px; 
+        background:#6c63ff; 
+        color:white; 
+        border:none; 
+        margin-right: 10px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+    ">Convert</button>
+
+    <button type="submit" name="download_pdf" style="
+        padding:10px 20px; 
+        border-radius:6px; 
+        background:#ff8c42; 
+        color:white; 
+        border:none;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+    ">Download PDF</button>
+</form>
+
+{% if reading_text %}
+<div style="
+    margin-top:24px; 
+    padding:18px; 
+    background:#f0f8ff; 
+    border-radius:12px; 
+    line-height:1.7; 
+    font-family:'Lexend', sans-serif; 
+    font-size:20px;
+    white-space: pre-wrap;
+">
+    {{ reading_text }}
+</div>
+{% endif %}
+
 {% endblock %}
