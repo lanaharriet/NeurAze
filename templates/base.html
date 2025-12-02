@@ -13,7 +13,8 @@
     <nav>
       {% if user.is_authenticated %}
         <span style="margin-right:12px;">Hi, {{ user.username }}</span>
-        <a href="{% url 'accounts:logout' %}" style="color:white;">Logout</a>
+        <!-- GET-safe logout link -->
+        <a href="{% url 'accounts:logout' %}" style="color:white;padding:6px 12px;border:1px solid white;border-radius:8px;text-decoration:none;">Logout</a>
       {% else %}
         <a href="{% url 'accounts:login' %}" style="color:white;margin-right:8px;">Login</a>
         <a href="{% url 'accounts:signup' %}" style="color:white;">Sign up</a>

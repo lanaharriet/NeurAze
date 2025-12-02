@@ -1,16 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <meta charset="utf-8">
+    <title>Login - NeurAze</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        /* Force Arial everywhere */
+        * {
+            font-family: Arial, sans-serif !important;
+        }
+
+        /* Updated Beautiful Login Button */
+        .login-btn {
+            background: linear-gradient(135deg, #6c63ff, #807aff);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s ease;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #5b54e6, #726cff);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+    </style>
+
 </head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+
+<body style="background:#f7f9fc;">
+    <div style="max-width:400px;margin:60px auto;padding:32px;background:white;
+                border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);">
+
+        <h2 style="text-align:center;color:#21304a;margin-bottom:20px;">Login</h2>
+
+        <!-- Show login errors -->
+        {% if form.errors %}
+            <div style="background:#ffe0e0;color:#b30000;padding:12px;border-radius:8px;margin-bottom:15px;">
+                Incorrect username or password.
+            </div>
+        {% endif %}
+
+        <form method="post" style="display:flex;flex-direction:column;gap:12px;">
+            {% csrf_token %}
+
+            <label style="font-weight:bold;color:#21304a;">Username</label>
+            {{ form.username }}
+
+            <label style="font-weight:bold;color:#21304a;">Password</label>
+            {{ form.password }}
+
+            <!-- New Beautiful Button -->
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+        </form>
+
+        <p style="margin-top:16px;text-align:center;">
+            Don’t have an account?
+            <a href="{% url 'accounts:signup' %}" style="color:#6c63ff;font-weight:bold;">Sign up</a>
+        </p>
+    </div>
 </body>
 </html>
