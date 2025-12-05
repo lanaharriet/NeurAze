@@ -1,0 +1,26 @@
+# Virtual environment
+neuraze_env/
+venv/
+ENV/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+
+# Django
+db.sqlite3
+/static/
+media/
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
